@@ -1,0 +1,22 @@
+{
+  "name": "kenu",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kenumovies/flask",
+  "authors": [
+    "nikhilpi <nikhilpai2016@u.northwestern.edu>"
+  ],
+  "description": "Search movies",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "jquery": "~2.1.3",
+    "react": "~0.12.2"
+  }
+}

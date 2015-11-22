@@ -1,1 +1,1 @@
-web: gunicorn kenumovies:app --log-file=-
+web: gunicorn project/app:app --log-file=-
