@@ -31,7 +31,6 @@ def get_poster(id,config):
         poster_urls.append(url)
     return poster_urls
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -43,10 +42,6 @@ def qasis():
     config = get_config()
     results = [{"id": x, "data": y['object'], "score":y['score'],"poster":get_poster(x,config)} for (x,y) in results]
     return jsonify({"results": results})
-
-@app.route('/hello')
-def hello():
-    return render_template('hello.html')
 
 
 if __name__ == '__main__':

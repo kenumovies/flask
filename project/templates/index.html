@@ -8,14 +8,13 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
-
   </head>
   <body>
 
-    <div id="wrap">
+    <div id="main_content">
         <h2>Qasis</h2>
         <i class="fa fa-search"></i>
-        <span id="search" name="search" onchange="send_data()" contenteditable="true" placeholder="Describe a movie"></span> 
+        <span id="search" name="search" onchange="send_data()" contenteditable="true" placeholder="Describe a Movie Plot"></span> 
         <i id="info" class="fa fa-info-circle" data-toggle="modal" data-target="#myModal"></i>
     </div>
 
@@ -44,70 +43,70 @@
     <script src="{{ url_for('static', filename='scripts/js/AnimOnScroll.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/js/classie.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/js/main.js') }}"></script>
+    {% raw %}
+      <script id="results_item" type="text/x-handlebars-template">
+        <ul class="grid effect-2" id="grid">
+        {{#each results}}
+          <li>
+            <a class="movie_card" data-id="{{id}}" data-toggle="modal" data-target="#myModal">
+              <img src="{{poster.[0]}}">
+            </a>
+          </li>
+        {{/each}}
+        </ul>
+      </script>
+
+      <script id="movie_modal" type="text/x-handlebars-template">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-4"><img class="img-responsive" src="{{poster.[0]}}"></div>
+                <div class="col-md-8 ">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h3>{{data.title}} ({{data.year}})</h3>
+                  <p>{{#if data.metascore}}{{data.metascore}} | {{/if}}{{data.rating}} | {{data.genre}} | {{data.runtime}}</p>
+                  <p class="people">Director: {{data.director}}</p>
+                  <p class="people">Actors: {{data.actors}}</p>
+                  <div class="plot"><p>{{data.plot}}</p></div>
+                  <a class="btn btn-default pull-left" href="http://www.imdb.com/title/{{id}}" target="_blank" a>iMDB</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </script>
+
+      <script id="info_modal" type="text/x-handlebars-template">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12 ">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h3>Qasis</h3>
+                  <p>Created by Shlok Amin, Nikhil Pai, Nick Paras</p>
+                  <p>Try out a sample query, search for:</p>
+                  <ul>
+                    <li>family of superheroes fights a redheaded villain</li>
+                    <li>farm boy battles the empire</li>
+                    <li>kid from coal mining town builds a rocket</li>
+                  </ul>
+                  <p>These should return:</p>
+                  <ul>
+                    <li>The Incredibles</li>
+                    <li>Star Wars</li>
+                    <li>October Sky</li>
+                  </ul>
+                  <p>Qasis allows a user to search for movies based on a natural language query of the plot. We use an information-retrieval algorithm by parsing keywords from the query, calculating Term-Frequency, Inverse-Document-Frequency scores for each of the movie synopses, and ranking by their relevance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </script>
+    {% endraw %}
   </body>
-  {% raw %}
-  <script id="results_item" type="text/x-handlebars-template">
-    <ul class="grid effect-2" id="grid">
-    {{#each results}}
-      <li>
-        <a class="movie_card" data-id="{{id}}" data-toggle="modal" data-target="#myModal">
-          <img src="{{poster.[0]}}">
-        </a>
-      </li>
-    {{/each}}
-    </ul>
-  </script>
-
-  <script id="movie_modal" type="text/x-handlebars-template">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-4"><img class="img-responsive" src="{{poster.[0]}}"></div>
-            <div class="col-md-8 ">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h3>{{data.title}} ({{data.year}})</h3>
-              <p>{{#if data.metascore}}{{data.metascore}} | {{/if}}{{data.rating}} | {{data.genre}} | {{data.runtime}}</p>
-              <p class="people">Director: {{data.director}}</p>
-              <p class="people">Actors: {{data.actors}}</p>
-              <div class="plot"><p>{{data.plot}}</p></div>
-              <a class="btn btn-default pull-left" href="http://www.imdb.com/title/{{id}}" target="_blank" a>iMDB</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </script>
-
-  <script id="info_modal" type="text/x-handlebars-template">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12 ">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h3>Qasis</h3>
-              <p>Created by Shlok Amin, Nikhil Pai, Nick Paras</p>
-              <p>Try out a sample query, search for:</p>
-              <ul>
-                <li>family of superheroes fights a redheaded villain</li>
-                <li>farm boy battles the empire</li>
-                <li>kid from coal mining town builds a rocket</li>
-              </ul>
-              <p>These should return:</p>
-              <ul>
-                <li>The Incredibles</li>
-                <li>Star Wars</li>
-                <li>October Sky</li>
-              </ul>
-              <p>Qasis allows a user to search for movies based on a natural language query of the plot. We use an information-retrieval algorithm by parsing keywords from the query, calculating Term-Frequency, Inverse-Document-Frequency scores for each of the movie synopses, and ranking by their relevance.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </script>
-  {% endraw %}
 </html>

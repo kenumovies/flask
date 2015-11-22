@@ -1,6 +1,5 @@
 var Handlebars = require('handlebars');
 
-
 $('#search').keyup(function(e){
     e.preventDefault();
     var val = $('#search').html();
@@ -10,14 +9,9 @@ $('#search').keyup(function(e){
         $.getJSON('qasis', {
             query: $('#search').html()
         }, function(data) {
-             console.log(data);
              render_results(data)
         });
     }
-})
-
-$('#myModal').on('shown.bs.modal', function (e) {
-  $(".plot").dotdotdot();
 })
 
 $('#info').click(function(e){
@@ -25,27 +19,6 @@ $('#info').click(function(e){
     var template = Handlebars.compile(source);
     $("#myModal").html(template());
 })
-
-/* center modal */
-function centerModals($element) {
-  var $modals;
-  if ($element.length) {
-    $modals = $element;
-  } else {
-    $modals = $('.modal-vcenter:visible');
-  }
-  $modals.each( function(i) {
-    var $clone = $(this).clone().css('display', 'block').appendTo('body');
-    var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
-    top = top > 0 ? top : 0;
-    $clone.remove();
-    $(this).find('.modal-content').css("margin-top", top);
-  });
-}
-$('.modal-vcenter').on('show.bs.modal', function(e) {
-  centerModals($(this));
-});
-$(window).on('resize', centerModals);
 
 var render_results = function(data){
     var data_dict = {};
@@ -68,7 +41,31 @@ var render_results = function(data){
         var source   = $("#movie_modal").html();
         var template = Handlebars.compile(source);
         $("#myModal").html(template(movie_data));
-        
     })
 }
 
+$('#myModal').on('shown.bs.modal', function (e) {
+  $(".plot").dotdotdot();
+})
+
+/* center modal */
+function centerModals($element) {
+  var $modals;
+  if ($element.length) {
+    $modals = $element;
+  } else {
+    $modals = $('.modal-vcenter:visible');
+  }
+  $modals.each( function(i) {
+    var $clone = $(this).clone().css('display', 'block').appendTo('body');
+    var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+    top = top > 0 ? top : 0;
+    $clone.remove();
+    $(this).find('.modal-content').css("margin-top", top);
+  });
+}
+$('.modal-vcenter').on('show.bs.modal', function(e) {
+  centerModals($(this));
+});
+
+$(window).on('resize', centerModals);
