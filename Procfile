@@ -1,0 +1,1 @@
+web: gunicorn kenumovies:app --log-file=-
