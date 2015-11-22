@@ -5,6 +5,8 @@ from nltk import PorterStemmer
 
 import db_access
 
+
+
 #takes list of tuples, returns dictionary of textblobs
 def preprocessAll():
 	db_access.exec_db("DROP TABLE IF EXISTS preprocessed_movies;")

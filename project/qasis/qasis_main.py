@@ -3,8 +3,9 @@ from make_corpus import *
 from parse_query import *
 from db_access import *
 
+
 #take string query, return list of tuples
-def main(q, actorList, directorList):
+def qasis_main(q, actorList, directorList):
 	#get keywords
 	kw = parseQuery(q)
 	#get docs (for now, ignore actors and directors)

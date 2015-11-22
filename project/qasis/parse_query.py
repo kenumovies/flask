@@ -1,6 +1,7 @@
 from textblob import TextBlob as tb
 from nltk import PorterStemmer
 
+
 #takes a string as a query, returns list of keywords
 def parseQuery(q):
 	blob = tb(q.lower())
