@@ -7,7 +7,7 @@ $('#search').keyup(function(e){
     if(code == 13) { //Enter keycode
         $("#results").html($('#spinner').html())
         $.getJSON('qasis', {
-            query: $('#search').html()
+            query: $('#search').html().replace(/(<([^>]+)>)/ig,"")
         }, function(data) {
              render_results(data)
         });
