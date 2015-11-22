@@ -8,7 +8,7 @@ Qasis allows a user to search for movies based on a natural language query of th
 * farm boy battles the empire
 * kid from coal mining town builds a rocket
 
-Shoud return:
+Should return:
 * The Incredibles
 * Star Wars
 * October Sky
