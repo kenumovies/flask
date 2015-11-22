@@ -58,4 +58,4 @@ def rankDocs(keywordList, doclistTuples):
 	
 	sortedDocs = sorted(scores.items(), key=lambda x: x[1]['score'], reverse = True)
 
-	return sortedDocs[:10]
+	return sortedDocs[:24]

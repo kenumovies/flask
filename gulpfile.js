@@ -15,10 +15,15 @@ var gulp = require('gulp'),
 // tasks
 
 gulp.task('transform', function () {
-  return gulp.src('./project/static/scripts/source/**/*.js')
+  return gulp.src('./project/static/scripts/source/main.js')
     .pipe(browserify())
     .pipe(gulp.dest('./project/static/scripts/js'))
     .pipe(size());
+});
+
+gulp.task('copy', function () {
+  return gulp.src('./project/static/scripts/source/lib/*.*')
+    .pipe(gulp.dest('./project/static/scripts/js'))
 });
 
 gulp.task('clean', function () {
@@ -36,7 +41,8 @@ gulp.task('flask', shell.task(['python project/app.py']));
 
 gulp.task('default', ['clean','sass'], function () {
   gulp.start('transform');
-  gulp.watch('./project/static/scripts/jsx/**/*.js', ['transform']);
+  gulp.start('copy');
+  gulp.watch('./project/static/scripts/source/**/*.js', ['transform']);
   gulp.watch('./project/static/sass/**/*.scss', ['sass']);
   gulp.start("flask")
 
