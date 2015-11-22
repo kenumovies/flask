@@ -16,9 +16,7 @@ var gulp = require('gulp'),
 
 gulp.task('transform', function () {
   return gulp.src('./project/static/scripts/jsx/**/*.js')
-    .pipe(browserify({transform: ['reactify']}))
-    .pipe(concat('main.js'))
-    //.pipe(uglify('main.js'))
+    .pipe(browserify({transform: ['reactify'],entries: ['./main.js']}))
     .pipe(gulp.dest('./project/static/scripts/js'))
     .pipe(size());
 });
