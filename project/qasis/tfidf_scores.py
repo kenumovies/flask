@@ -1,6 +1,7 @@
 import math
 from textblob import TextBlob as tb
 
+
 def tf(word, blob):
 	return float(blob.words.count(word)) / len(blob.words)
 
@@ -14,16 +15,47 @@ def tfidf(word, blob, bloblist):
     return float(tf(word, blob) * idf(word, bloblist))
 
 def scoreDoc(keywordList, doc, doclist):
-	sum = 0
+	sumS = 0
 	for kw in keywordList:
-		sum = sum + tfidf(kw, doc, doclist)
-	return sum
+		sumS = sumS + tfidf(kw, doc, doclist)
+	return sumS
+
+def buildDict(movie):
+	return {
+		'imdb_id':movie[0],
+		'title':movie[2],
+		'year':movie[3],
+		'rating':movie[4],
+		'released':movie[5],
+		'runtime':movie[6],
+		'genre':movie[7],
+		'plot':movie[8],
+		'language':movie[9],
+		'country':movie[10],
+		'awards':movie[11],
+		'poster':movie[12],
+		'metascore':movie[13]
+	}
 
 def rankDocs(keywordList, doclistTuples):
+
 	scores = {}
 	docList = [tb(doc[1].decode('utf-8')) for doc in doclistTuples]
-	for doc in doclistTuples:
-		scores[doc[0]] = scoreDoc(keywordList, tb(doc[1].decode('utf-8')), docList)
+	
+	kwIDFs = {}
+	for w in keywordList:
+		kwIDFs[w] = idf(w, docList)
 
-	sortedDocs = sorted(scores.items(), key=lambda x: x[1], reverse = True)
+	for doc in doclistTuples:
+		text = tb(doc[1].decode('utf-8'))
+		sumS = 0
+		for w in keywordList:
+			sumS = sumS + (tf(w,text)*kwIDFs[w])
+		scores[doc[0]] = {'score': sumS, 'object': buildDict(doc)}
+
+		#scores[doc[0]] = scoreDoc(keywordList, tb(doc[1].decode('utf-8')), docList)
+
+	
+	sortedDocs = sorted(scores.items(), key=lambda x: x[1]['score'], reverse = True)
+
 	return sortedDocs[:10]
