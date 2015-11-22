@@ -27,13 +27,14 @@ body {
     }
 
     i.fa-info-circle {
-    position:fixed;
-    bottom:10px;
-    right:10px;
-    font-size: 35px;
-    border-radius: 6px;
-      opacity: .5;
-      color: #DABA9E ;
+        position:fixed;
+        bottom:10px;
+        right:10px;
+        font-size: 35px;
+        border-radius: 6px;
+        opacity: .5;
+        color: #DABA9E ;
+        z-index: 1000;
     }
 
     span#search {
