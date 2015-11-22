@@ -1,14 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from qasis.qasis_main import *
 
-
-
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
-    print qasis_main('batman fights joker','','')
     return render_template('index.html')
 
 @app.route('/qasis')
