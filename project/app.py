@@ -1,14 +1,8 @@
 from flask import Flask, render_template
-from sassutils.wsgi import SassMiddleware
+
 
 
 app = Flask(__name__)
-
-app.wsgi_app = SassMiddleware(app.wsgi_app, {
-    'project': ('static/sass', 'static/css', '/static/css')
-})
-
-
 
 
 @app.route('/')
@@ -22,4 +16,4 @@ def hello():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port = 5000)
