@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
+from qasis.qasis_main import *
 
 
 
@@ -7,8 +8,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    print qasis_main('batman fights joker','','')
     return render_template('index.html')
 
+@app.route('/qasis')
+def qasis():
+    query = request.args.get('query')
+    results = qasis_main(query,'','')
+    results = [{"name": x, "score": y} for (x,y) in results]
+    return jsonify({"results": results})
 
 @app.route('/hello')
 def hello():
