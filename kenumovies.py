@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello poop!"
+    return "Hello kittens!"
 @app.route("/fuck")
 def yo():
     return "Fuck!"
