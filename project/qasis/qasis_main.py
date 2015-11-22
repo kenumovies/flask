@@ -25,10 +25,12 @@ def qasis_main(q, actorList, directorList):
 					m.country,
 					m.awards,
 					m.poster,
+					m.director,
+					m.actors,
 					m.metascore
 				FROM 
 					preprocessed_movies pm
-					NATURAL INNER JOIN movies m
+					NATURAL INNER JOIN movies_flat m
 				;"""
 	docs = query_db(sqlQuery)
 	return rankDocs(kw, docs)

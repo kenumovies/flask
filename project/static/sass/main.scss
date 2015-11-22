@@ -16,8 +16,8 @@
 }
 
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
-body {
-    background-color: #D1DBBD ;
+ body {
+    background-color: #4A6474 ;
     font-size: 15px;
 }
 #wrap {
@@ -26,13 +26,26 @@ body {
     text-align: center;
 }
 i.fa-search {
+    display: inline-block;
+    text-align: center;
+    overflow-y: hidden;
     font-size: 35px;
     border-radius: 6px;
       opacity: .5;
-      color: #3E606F ;
+      color: #DABA9E ;
 }
-span {
+i.fa-info-circle {
+position:fixed;
+bottom:10px;
+right:10px;
+font-size: 35px;
+border-radius: 6px;
+  opacity: .5;
+  color: #DABA9E ;
+}
+span#search {
   min-width: 20px;
+  max-height: 10px;
   font-size: 40px;
   display: inline-block;
   font-family: "Lato";
@@ -40,7 +53,7 @@ span {
   font-size: 2.3em;
   border: none;
   outline: none;
-  color: #3E606F ;
+  color: #DABA9E ;
   padding: 3px;
   background: none;
   transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
@@ -49,6 +62,93 @@ span {
 [contenteditable=true]:empty:before {
     content: attr(placeholder);
     display: block;
+}
+br {
+display: none;
+}
+h2{
+    text-align: center;
+    font-family: "Lato";
+      font-weight: 150;
+      font-size: 3em;
+      color: #DABA9E ;
+
+}
+
+$orange: #DABA9E;
+
+@keyframes pulse {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+body {
+  margin: 0;
+}
+
+.hidden{
+    display: none;
+}
+
+
+.ldr {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  width: 6em;
+  height: 6em;
+  margin-top: 8em;
+}
+
+.ldr-blk {
+  height: 35%;
+  width: 35%;
+  animation: pulse 0.75s ease-in infinite alternate;
+  background-color: darken($orange, 15%);
+}
+
+.an_delay {
+  animation-delay: 0.75s;
+}
+
+.modal-open .modal {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  overflow-y: scroll;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 0;
+    h3 {
+        font-family: "Lato";
+        font-weight: 400;
+        margin-top: 0;
+    }
+    p {
+        font-family: "Lato";
+        font-weight: 300;
+    }
+
+    .plot{
+        height: 100px;
+    }
+    .btn {
+        border-radius: 0;
+    }
+    .close:focus{
+        outline: 0;
+    }
+
+    .people{
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 

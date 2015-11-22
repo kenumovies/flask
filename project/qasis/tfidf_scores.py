@@ -34,7 +34,9 @@ def buildDict(movie):
 		'country':movie[10],
 		'awards':movie[11],
 		'poster':movie[12],
-		'metascore':movie[13]
+		'director':movie[13],
+		'actors':movie[14],
+		'metascore':movie[15]
 	}
 
 def rankDocs(keywordList, doclistTuples):
