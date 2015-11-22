@@ -5,6 +5,7 @@ body {
     background-color: #4A6474 ;
     font-size: 15px;
     margin: 0;
+    padding-right: 0px !important;
 }
 
 .hidden{
@@ -121,10 +122,14 @@ body {
     }
 }
 
-.modal-open .modal {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    overflow-y: scroll;
+.modal-open {
+    overflow-y: auto;
+    
+    .modal {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        overflow-y: scroll;
+    }   
 }
 
 
