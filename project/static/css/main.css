@@ -56,6 +56,9 @@ body {
     font-size: 3em;
     color: #DABA9E; }
 
+.movie_card {
+  cursor: pointer; }
+
 .movie {
   height: 100%;
   overflow: hidden;
